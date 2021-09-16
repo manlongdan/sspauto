@@ -1,0 +1,37 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: autoCheckin-Batch
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  watch:
+    types: [ started ]
+  schedule:
+    - cron: 0 13 * * *
+jobs:
+  build:
+    if: ${{github.actor == github.event.repository.owner.login}}
+    
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: init
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: run
+      env:
+        mykey: ${{ secrets.MYKEY }} 
+        telekey: ${{ secrets.TELEKEY }} 
+        serverkey: ${{ secrets.SKEY }}
+        qmsgkey: ${{ secrets.QKEY }}
+      run: |
+        python3 main.py
