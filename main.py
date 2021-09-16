@@ -27,8 +27,8 @@ ttoken = ""
 tuserid = ""
 if(telekey != ''):
   telekeys = telekey.split('\n')
-  ttoken = telekey[0]
-  tuserid = telekey[1]
+  ttoken = telekeys[0]
+  tuserid = telekeys[1]
 if(datas == ''):
   print('您没有输入任何信息')
   exit
