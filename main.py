@@ -199,11 +199,12 @@ while i < len(groups):
   prop = group.split('|')
   site_name = prop[0]
   web_site = prop[1]
-  profiles = prop[2]
+  prof = prop[2]
+  profiles = prof.split(;)
   j = 0
   while j < len(profiles):
-    
     profile = profiles[j]
+    prodile = profile.split(',')
     username = profile[0]
     pswd = profile[1]
     run = SspanelQd(site_name, web_site ,username ,pswd)
