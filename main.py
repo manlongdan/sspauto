@@ -25,15 +25,21 @@ telekey = os.environ["telekey"]
 ttoken = ""
 tuserid = ""
 if(telekey != ''):
+  telekeys = telekey.split('\n')
   ttoken = telekey[0]
   tuserid = telekey[1]
-
+if(datas == ''):
+  print('您没有输入任何信息')
+  exit
+groups = datas.split('\n')
 #初始化环境变量结尾
 
 class SspanelQd(object):
-    def __init__(self,site,username,psw):
+    def __init__(self,name,site,username,psw):
         ###############登录信息配置区###############
-        #签到总流量
+        #机场的名字
+        self.name = name
+        #签到流量
         self.flow = 0
         # 机场地址
         self.base_url = site
@@ -102,8 +108,13 @@ class SspanelQd(object):
             return msg
     def getflow(self , msg):
       pattern = re.compile('获得了(.+)MB')
+      if(msg == ""):
+        return 0
       num = pattern.findall(msg)
-      
+      if num == []:
+        return 0
+      else:
+        return num[0]
     
     # Qmsg私聊推送
     def Qmsg_send(self, msg):
@@ -121,7 +132,7 @@ class SspanelQd(object):
             return
         server_url = "https://sctapi.ftqq.com/" + str(self.SendKey) + ".send"
         data = {
-            'text': "今日的流量白嫖到啦！",
+            'text': self.name + "签到通知",
             'desp': msg
         }
         requests.post(server_url, data=data)
@@ -167,6 +178,12 @@ class SspanelQd(object):
         msg = self.checkin()
         if msg == False:
             print("网址不正确或网站禁止访问。")
+            msg = self.mame + "签到失败"
+            self.server_send(msg)
+            self.kt_send(msg)
+            self.Qmsg_send(msg)
+            self.tele_send(msg)
+            self.pushplus_send(msg)
         else:
             self.server_send(msg)
             self.kt_send(msg)
@@ -174,13 +191,17 @@ class SspanelQd(object):
             self.tele_send(msg)
             self.pushplus_send(msg)
 
-
-# 云函数入口
-def main_handler(event, context):
-    run = SspanelQd()
-    run.main()
-
-
-if __name__ == '__main__':
-    run = SspanelQd()
+i = 0
+for i < len(groups):
+  group = groups[i]
+  prop = group.split('|')
+  site_name = prop[0]
+  web_site = prop[1]
+  profiles = prop[2]
+  j = 0
+  for j < len(profiles):
+    profile = profiles[j]
+    username = profile[0]
+    pswd = profile[1]
+    run = SspanelQd(site_name, web_site ,username ,pswd)
     run.main()
