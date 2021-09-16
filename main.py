@@ -182,14 +182,14 @@ class SspanelQd(object):
             msg = self.mame + "签到失败"
             self.server_send(msg)
             self.kt_send(msg)
-            self.Qmsg_send(msg)
-            self.tele_send(msg)
+            self.Qmsg_send(self.name+"\n"+msg)
+            self.tele_send(self.name+"\n"+msg)
             self.pushplus_send(msg)
         else:
             self.server_send(msg)
             self.kt_send(msg)
-            self.Qmsg_send(msg)
-            self.tele_send(msg)
+            self.Qmsg_send(self.name+"\n"+msg)
+            self.tele_send(self.name+"\n"+msg)
             self.pushplus_send(msg)
 
 i = 0
