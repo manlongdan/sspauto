@@ -192,7 +192,7 @@ class SspanelQd(object):
             self.pushplus_send(msg)
 
 i = 0
-for i < len(groups):
+while i < len(groups):
   i += 1
   group = groups[i]
   prop = group.split('|')
@@ -200,7 +200,7 @@ for i < len(groups):
   web_site = prop[1]
   profiles = prop[2]
   j = 0
-  for j < len(profiles):
+  while j < len(profiles):
     j += 1
     profile = profiles[j]
     username = profile[0]
