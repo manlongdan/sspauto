@@ -179,11 +179,11 @@ class SspanelQd(object):
         msg = self.checkin()
         if msg == False:
             print("网址不正确或网站禁止访问。")
-            msg = self.mame + "签到失败"
+            msg = self.name + "签到失败"
             self.server_send(msg)
             self.kt_send(msg)
-            self.Qmsg_send(self.name+"\n"+msg)
-            self.tele_send(self.name+"\n"+msg)
+            self.Qmsg_send(msg)
+            self.tele_send(msg)
             self.pushplus_send(msg)
         else:
             self.server_send(msg)
