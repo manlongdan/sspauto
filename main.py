@@ -194,17 +194,18 @@ class SspanelQd(object):
 
 i = 0
 while i < len(groups):
-  i += 1
   group = groups[i]
+  i += 1
   prop = group.split('|')
   site_name = prop[0]
   web_site = prop[1]
   profiles = prop[2]
   j = 0
   while j < len(profiles):
-    j += 1
+    
     profile = profiles[j]
     username = profile[0]
     pswd = profile[1]
     run = SspanelQd(site_name, web_site ,username ,pswd)
     run.main()
+    j += 1
