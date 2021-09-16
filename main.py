@@ -204,7 +204,7 @@ while i < len(groups):
   j = 0
   while j < len(profiles):
     profile = profiles[j]
-    prodile = profile.split(',')
+    profile = profile.split(',')
     username = profile[0]
     pswd = profile[1]
     print(site_name)
