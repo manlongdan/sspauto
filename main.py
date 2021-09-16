@@ -200,7 +200,7 @@ while i < len(groups):
   site_name = prop[0]
   web_site = prop[1]
   prof = prop[2]
-  profiles = prof.split(;)
+  profiles = prof.split(';')
   j = 0
   while j < len(profiles):
     profile = profiles[j]
