@@ -10,7 +10,7 @@ on:
     - cron: 43 8 * * *
 jobs:
   build:
-    if: github.actor == github.event.repository.owner.login || github.event_name == "schedule"
+    if: ${{ github.actor == github.event.repository.owner.login || github.event_name == 'schedule' }}
     
     runs-on: ubuntu-latest
     steps:
