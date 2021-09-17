@@ -189,7 +189,7 @@ class SspanelQd(object):
             self.server_send(msg)
             self.kt_send(msg)
             self.Qmsg_send(self.name+"\n"+self.email+"\n"+msg)
-            self.tele_send(self.name+"\n"+msg)
+            self.tele_send(self.name+"\n"+self.email+"\n"+msg)
             self.pushplus_send(msg)
 
 i = 0
